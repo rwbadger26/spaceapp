@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:spaceapp.Models"
+             xmlns:viewModels="clr-namespace:spaceapp.ViewModels"
+             x:Class="spaceapp.MainPage"
+             x:DataType="viewModels:NewsViewModel"
+             Title="Space News"
+             BackgroundColor="#05070F">
+
+    <Grid Padding="10" RowSpacing="10" BackgroundColor="#05070F">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Text="Latest Space News" FontSize="24" FontAttributes="Bold" TextColor="#F3F7FF" />
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Articles}" SelectionMode="None" VerticalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:NewsArticle">
+                    <Border Padding="10" Stroke="#263246" StrokeThickness="1" BackgroundColor="#111827">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleArticleExpansionCommand}"
+                                                  CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" TextColor="#F8FAFC" />
+                            <Label Text="{Binding Summary}" FontSize="14" TextColor="#D1D5DB" LineBreakMode="WordWrap" MaxLines="3">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsExpanded}" Value="True">
+                                        <Setter Property="MaxLines" Value="20" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label Text="Tap card to expand/collapse" FontSize="11" TextColor="#93C5FD" />
+                            <Label Text="{Binding PublishedDate, StringFormat='{0:MMM dd, yyyy}'}" FontSize="12" TextColor="#9CA3AF" />
+                            <Label Text="{Binding Source}" FontSize="11" TextColor="#60A5FA" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
