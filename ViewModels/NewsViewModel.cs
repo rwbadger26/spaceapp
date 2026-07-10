@@ -37,6 +37,8 @@ namespace spaceapp.ViewModels
         {
             IsLoading = true;
 
+            await Task.Delay(2000);   // ← Temporary 2-second delay for testing
+
             var articles = await _newsService.GetNewsArticlesAsync();
 
             Articles.Clear();
