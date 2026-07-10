@@ -14,9 +14,27 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Text="Latest Space News" FontSize="24" FontAttributes="Bold" TextColor="#F3F7FF" />
+        <!-- Header -->
+        <Label Grid.Row="0" 
+               Text="Latest Space News" 
+               FontSize="24" 
+               FontAttributes="Bold" 
+               TextColor="#F3F7FF" />
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Articles}" SelectionMode="None" VerticalOptions="FillAndExpand">
+        <!-- Loading Spinner -->
+        <ActivityIndicator Grid.Row="1"
+                           IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"
+                           Color="#60A5FA"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Scale="1.5" />
+
+        <!-- News Cards -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Articles}" 
+                        SelectionMode="None"
+                        VerticalOptions="FillAndExpand">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
             </CollectionView.ItemsLayout>
