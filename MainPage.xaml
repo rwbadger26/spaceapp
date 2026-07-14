@@ -8,7 +8,7 @@
              Title="Space News"
              BackgroundColor="#05070F">
 
-    <Grid Padding="10" RowSpacing="10" BackgroundColor="#05070F">
+    <Grid Padding="10" BackgroundColor="#05070F">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -21,22 +21,31 @@
                FontAttributes="Bold" 
                TextColor="#F3F7FF" />
 
-        <!-- News Cards -->
+        <!-- News Cards (Always visible) -->
         <CollectionView Grid.Row="1" 
                         ItemsSource="{Binding Articles}" 
-                        SelectionMode="None"
-                        VerticalOptions="FillAndExpand">
-            <!-- ... your existing ItemTemplate stays the same ... -->
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <!-- Keep your existing card template here -->
+            </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Loading Spinner (placed AFTER CollectionView so it's on top) -->
-        <ActivityIndicator Grid.Row="1"
-                           IsRunning="{Binding IsLoading}"
-                           IsVisible="{Binding IsLoading}"
-                           Color="#60A5FA"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Scale="1.5" />
+        <!-- Loading Overlay (Only visible while loading) -->
+        <Grid Grid.Row="1"
+              IsVisible="{Binding IsLoading}"
+              BackgroundColor="#05070F"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               Color="#60A5FA"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Scale="2.0" />
+        </Grid>
 
     </Grid>
 
