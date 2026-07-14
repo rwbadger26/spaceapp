@@ -5,8 +5,7 @@ namespace spaceapp.Models
 {
     public class NewsArticle : INotifyPropertyChanged
     {
-        private bool _isExpanded;
-
+        private bool _isExpanded = false;
         public string Id { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Summary { get; set; } = string.Empty;

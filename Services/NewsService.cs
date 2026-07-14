@@ -34,7 +34,8 @@ namespace spaceapp.Services
                         Summary = item.Explanation ?? "No summary available.",
                         ImageUrl = item.Url ?? string.Empty,
                         PublishedDate = DateTime.TryParse(item.Date, out var parsedDate) ? parsedDate : DateTime.Now,
-                        Source = "NASA"
+                        Source = "NASA",
+                        IsExpanded = false
                     })
                     .OrderByDescending(article => article.PublishedDate)
                     .Take(MaxArticles)
@@ -68,7 +69,8 @@ namespace spaceapp.Services
                     Summary = "Check internet connection or API key status, then try again.",
                     ImageUrl = string.Empty,
                     PublishedDate = DateTime.Now,
-                    Source = "Space App"
+                    Source = "Space App",
+                    IsExpanded = false
                 },
                 new NewsArticle
                 {
@@ -77,7 +79,8 @@ namespace spaceapp.Services
                     Summary = "NASA's Artemis program remains focused on returning humans to the Moon.",
                     ImageUrl = string.Empty,
                     PublishedDate = DateTime.Now.AddDays(-1),
-                    Source = "NASA"
+                    Source = "NASA",
+                    IsExpanded = false
                 },
                 new NewsArticle
                 {
@@ -86,7 +89,8 @@ namespace spaceapp.Services
                     Summary = "ISS partners continue science operations and technology demonstrations.",
                     ImageUrl = string.Empty,
                     PublishedDate = DateTime.Now.AddDays(-2),
-                    Source = "ISS"
+                    Source = "ISS",
+                    IsExpanded = false
                 },
                 new NewsArticle
                 {
@@ -95,7 +99,8 @@ namespace spaceapp.Services
                     Summary = "Launch providers continue supporting science and communications payloads.",
                     ImageUrl = string.Empty,
                     PublishedDate = DateTime.Now.AddDays(-3),
-                    Source = "Space Industry"
+                    Source = "Space Industry",
+                    IsExpanded = false
                 },
                 new NewsArticle
                 {
@@ -104,7 +109,8 @@ namespace spaceapp.Services
                     Summary = "Observatories are gathering new data across multiple wavelengths.",
                     ImageUrl = string.Empty,
                     PublishedDate = DateTime.Now.AddDays(-4),
-                    Source = "Astronomy Community"
+                    Source = "Astronomy Community",
+                    IsExpanded = false
                 }
             };
         }

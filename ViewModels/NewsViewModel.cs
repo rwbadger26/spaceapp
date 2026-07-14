@@ -10,7 +10,6 @@ namespace spaceapp.ViewModels
     {
         private readonly NewsService _newsService;
         private bool _isLoading;
-
         public ObservableCollection<NewsArticle> Articles { get; set; }
 
         public bool IsLoading
@@ -37,7 +36,7 @@ namespace spaceapp.ViewModels
         {
             IsLoading = true;
 
-            await Task.Delay(3000);   // ← Temporary 2-second delay for testing
+            //await Task.Delay(3000);   // ← Temporary 3-second delay for testing
 
             var articles = await _newsService.GetNewsArticlesAsync();
 
